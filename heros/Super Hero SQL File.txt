@@ -1,0 +1,90 @@
+create schema superhero;
+
+create table SuperHero(
+SuperHeroId varchar(255)not null,
+Name varchar(255),
+Image varchar(255),
+primary key(SuperHeroId)
+);
+
+create table PowerStats(
+SuperHeroId varchar(255) not null,
+Intelligence varchar(255),
+Strength varchar(255),
+Speed varchar(255),
+Durability varchar(255),
+Power varchar(255),
+Combat varchar(255),
+primary key(SuperHeroId)
+);
+
+create table Biography(
+SuperHeroId varchar(255) not null,
+FullName varchar(255),
+AlterEgos text,
+Aliases text,
+PlaceOfBirth text,
+FirstAppearance text,
+Publisher text,
+Alignment varchar(255),
+primary key(SuperHeroId)
+);
+
+create table Appearance(
+SuperHeroId varchar(255) not null,
+Gender varchar(20),
+Race varchar(255),
+Height varchar(255),
+Weight varchar(255),
+EyeColor varchar(255),
+HairColor varchar(255),
+primary key(SuperHeroId)
+);
+
+create table Work(
+SuperHeroId varchar(255) not null,
+Occupation text,
+Base text,
+primary key(SuperHeroId)
+);
+
+create table Connections(
+SuperHeroId varchar(255) not null,
+GroupAffiliation text,
+Relatives text,
+primary key(SuperHeroId)
+);
+
+select  
+superhero_info.SuperHeroId ,
+ superhero_info.FullName ,
+ superhero_info.AlterEgos ,
+ superhero_info.Aliases ,
+ superhero_info.PlaceOfBirth ,
+ superhero_info.FirstAppearance ,
+ superhero_info.Publisher ,
+ superhero_info.Alignment ,
+ superhero_info.name ,
+ superhero_info.Image ,
+ appearance.SuperHeroId  ,
+ appearance.Gender ,
+ appearance.Race ,
+ appearance.Height ,
+ appearance.Weight ,
+ appearance.EyeColor ,
+ appearance.HairColor ,
+   connections.SuperHeroId ,
+   connections.GroupAffiliation ,
+   connections.Relatives
+FROM connections 
+ INNER JOIN superhero_info ON superhero_info.SuperHeroId = connections.SuperHeroId
+ INNER JOIN appearance ON appearance.SuperHeroId = connections.SuperHeroId
+ ORDER BY appearance.SuperHeroID
+
+
+select * from superhero;
+select * from powerstats;
+select * from biography;
+select * from appearance;
+select * from work;
+select * from connections;
